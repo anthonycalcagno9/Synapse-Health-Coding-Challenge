@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
@@ -19,17 +20,17 @@ namespace Synapse.OrdersExample
             IApiClient apiClient = new MockApiClient();
 
             var medicalEquipmentOrders = await FetchMedicalEquipmentOrders(apiClient);
-            foreach (var order in medicalEquipmentOrders)
+            foreach (var order in medicalEquipmentOrders.Orders)
             {
-                var updatedOrder = ProcessOrder(order);
-                SendAlertAndUpdateOrder(updatedOrder).GetAwaiter().GetResult();
+                var updatedOrder = ProcessOrder(order, apiClient);
+                SendAlertAndUpdateOrder(updatedOrder, apiClient).GetAwaiter().GetResult();
             }
 
             Console.WriteLine("Results sent to relevant APIs.");
 			return 0;
         }
 
-        static async Task<OrderDTO[]> FetchMedicalEquipmentOrders(IApiClient apiClient)
+        static async Task<OrderDTO> FetchMedicalEquipmentOrders(IApiClient apiClient)
         {
             using (HttpClient httpClient = new HttpClient())
             {
@@ -42,24 +43,25 @@ namespace Synapse.OrdersExample
                     Console.WriteLine("===============");
                     Console.WriteLine(ordersData);
                     Console.WriteLine("================");
-                    return JArray.Parse(ordersData).ToObject<OrderDTO[]>();
+                    //return JObject.Parse(ordersData).ToObject<OrderDTO>();
+                    return JsonSerializer.Deserialize<OrderDTO>(ordersData);
                 }
                 else
                 {
                     Console.WriteLine("Failed to fetch orders from API.");
-                    return new OrderDTO[0];
+                    return new OrderDTO {Orders = []};
                 }
             }
         }
 
-        static OrderDTO ProcessOrder(OrderDTO order)
+        static Order ProcessOrder(Order order, IApiClient apiClient)
         {
-            var items = order["Items"].ToObject<JArray>();
+            var items = order.Items;
             foreach (var item in items)
             {
                 if (IsItemDelivered(item))
                 {
-                    SendAlertMessage(item, order["OrderId"].ToString());
+                    SendAlertMessage(item, order.OrderId.ToString(), apiClient);
                     IncrementDeliveryNotification(item);
                 }
             }
@@ -67,59 +69,59 @@ namespace Synapse.OrdersExample
             return order;
         }
 
-        static bool IsItemDelivered(JToken item)
+        static bool IsItemDelivered(Item item)
         {
-            return item["Status"].ToString().Equals("Delivered", StringComparison.OrdinalIgnoreCase);
+            return item.Status.Equals("Delivered", StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
         /// Delivery alert
         /// </summary>
         /// <param name="orderId">The order id for the alert</param>
-        static void SendAlertMessage(JToken item, string orderId)
+        static void SendAlertMessage(Item item, string orderId, IApiClient apiClient)
         {
             using (HttpClient httpClient = new HttpClient())
             {
                 string alertApiUrl = "https://alert-api.com/alerts";
                 var alertData = new
                 {
-                    Message = $"Alert for delivered item: Order {orderId}, Item: {item["Description"]}, " +
-                              $"Delivery Notifications: {item["deliveryNotification"]}"
+                    Message = $"Alert for delivered item: Order {orderId}, Item: {item.Description}, " +
+                              $"Delivery Notifications: {item.DeliveryNotification}"
                 };
                 var content = new StringContent(JObject.FromObject(alertData).ToString(), System.Text.Encoding.UTF8, "application/json");
-                var response = httpClient.PostAsync(alertApiUrl, content).Result;
+                var response = apiClient.PostAsync(alertApiUrl, content).Result;
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine($"Alert sent for delivered item: {item["Description"]}");
+                    Console.WriteLine($"Alert sent for delivered item: {item.Description}");
                 }
                 else
                 {
-                    Console.WriteLine($"Failed to send alert for delivered item: {item["Description"]}");
+                    Console.WriteLine($"Failed to send alert for delivered item: {item.Description}");
                 }
             }
         }
 
-        static void IncrementDeliveryNotification(JToken item)
+        static void IncrementDeliveryNotification(Item item)
         {
-            item["deliveryNotification"] = item["deliveryNotification"].Value<int>() + 1;
+            item.DeliveryNotification++;
         }
 
-        static async Task SendAlertAndUpdateOrder(JObject order)
+        static async Task SendAlertAndUpdateOrder(Order order, IApiClient apiClient)
         {
             using (HttpClient httpClient = new HttpClient())
             {
                 string updateApiUrl = "https://update-api.com/update";
-                var content = new StringContent(order.ToString(), System.Text.Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync(updateApiUrl, content);
+                var content = new StringContent(JsonSerializer.Serialize(order), System.Text.Encoding.UTF8, "application/json");
+                var response = await apiClient.PostAsync(updateApiUrl, content);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine($"Updated order sent for processing: OrderId {order["OrderId"]}");
+                    Console.WriteLine($"Updated order sent for processing: OrderId {order.OrderId}");
                 }
                 else
                 {
-                    Console.WriteLine($"Failed to send updated order for processing: OrderId {order["OrderId"]}");
+                    Console.WriteLine($"Failed to send updated order for processing: OrderId {order.OrderId}");
                 }
             }
         }
