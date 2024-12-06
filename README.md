@@ -1,2 +1,2 @@
-# Synapse-Health-Coding-Challenge
+:# Synapse-Health-Coding-Challenge
 Coding Challenge for Interview
