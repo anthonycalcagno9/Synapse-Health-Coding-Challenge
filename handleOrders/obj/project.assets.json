@@ -842,11 +842,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/class/class.csproj",
-      "projectName": "class",
-      "projectPath": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/class/class.csproj",
+      "projectUniqueName": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/handleOrders/handleOrders.csproj",
+      "projectName": "handleOrders",
+      "projectPath": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/handleOrders/handleOrders.csproj",
       "packagesPath": "/Users/anthonycalcagno/.nuget/packages/",
-      "outputPath": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/class/obj/",
+      "outputPath": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/handleOrders/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/anthonycalcagno/.nuget/NuGet/NuGet.Config"

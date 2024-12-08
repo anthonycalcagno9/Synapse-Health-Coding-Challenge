@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Hel7P/SMUsQ=",
+  "dgSpecHash": "4WQfplZttVI=",
   "success": true,
-  "projectFilePath": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/class/class.csproj",
+  "projectFilePath": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/handleOrders/handleOrders.csproj",
   "expectedPackageFiles": [
     "/Users/anthonycalcagno/.nuget/packages/castle.core/5.1.1/castle.core.5.1.1.nupkg.sha512",
     "/Users/anthonycalcagno/.nuget/packages/microsoft.extensions.configuration/9.0.0/microsoft.extensions.configuration.9.0.0.nupkg.sha512",

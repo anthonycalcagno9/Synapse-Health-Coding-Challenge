@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/unitTests/unitTests.csproj": {}
+    "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/handleOrders/handleOrders.csproj": {}
   },
   "projects": {
-    "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/unitTests/unitTests.csproj": {
+    "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/handleOrders/handleOrders.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/unitTests/unitTests.csproj",
-        "projectName": "unitTests",
-        "projectPath": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/unitTests/unitTests.csproj",
+        "projectUniqueName": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/handleOrders/handleOrders.csproj",
+        "projectName": "handleOrders",
+        "projectPath": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/handleOrders/handleOrders.csproj",
         "packagesPath": "/Users/anthonycalcagno/.nuget/packages/",
-        "outputPath": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/unitTests/obj/",
+        "outputPath": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/handleOrders/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/anthonycalcagno/.nuget/NuGet/NuGet.Config"
@@ -44,25 +44,21 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
-            "Microsoft.NET.Test.Sdk": {
+            "Microsoft.Extensions.Logging": {
               "target": "Package",
-              "version": "[17.11.1, )"
+              "version": "[9.0.0, )"
             },
-            "NUnit": {
+            "Microsoft.Extensions.Logging.Console": {
               "target": "Package",
-              "version": "[4.2.2, )"
+              "version": "[9.0.0, )"
             },
-            "NUnit.Analyzers": {
+            "Moq": {
               "target": "Package",
-              "version": "[4.3.0, )"
+              "version": "[4.20.72, )"
             },
-            "NUnit3TestAdapter": {
+            "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[4.6.0, )"
-            },
-            "coverlet.collector": {
-              "target": "Package",
-              "version": "[6.0.2, )"
+              "version": "[13.0.3, )"
             }
           },
           "imports": [
