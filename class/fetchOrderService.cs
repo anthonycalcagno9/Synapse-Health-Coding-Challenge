@@ -1,24 +1,28 @@
 using System.Text.Json;
+using Microsoft.Extensions.Logging;
 
 namespace Synapse.FetchOrders
 {
-    class FetchOrderService(IApiClient apiClient)
+    class FetchOrderService(HttpClient apiClient, ILogger logger)
     {
-        public IApiClient _apiClient = apiClient;
+        public HttpClient _apiClient = apiClient;
+
+        public ILogger _logger = logger;
 
         public async Task<OrderDTO> FetchMedicalEquipmentOrders()
         {
             {
                 string ordersApiUrl = "https://orders-api.com/orders";
-                var response = await _apiClient.GetAsync(ordersApiUrl);
+                HttpResponseMessage response = await _apiClient.GetAsync(ordersApiUrl);
                 if (response.IsSuccessStatusCode)
                 {
+                    _logger.LogInformation("Successfully fetched orders from API");
                     string ordersData = await response.Content.ReadAsStringAsync();
                     return JsonSerializer.Deserialize<OrderDTO>(ordersData);
                 }
                 else
                 {
-                    Console.WriteLine("Failed to fetch orders from API.");
+                    _logger.LogError("Failed to fetch orders from API.");
                     return new OrderDTO {Orders = []};
                 }
             }

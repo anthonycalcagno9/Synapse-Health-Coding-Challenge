@@ -1,15 +1,17 @@
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 
 namespace Synapse.ProcessOrders
 {
-    class ProcessOrderService(IApiClient apiClient)
+    class ProcessOrderService(HttpClient apiClient, ILogger logger)
     {
-        public IApiClient _apiClient = apiClient;
+        private readonly HttpClient _apiClient = apiClient;
+        private readonly ILogger _logger = logger;
 
          public Order ProcessOrder(Order order)
         {
-            var items = order.Items;
-            foreach (var item in items)
+            Item[] items = order.Items;
+            foreach (Item item in items)
             {
                 if (IsItemDelivered(item))
                 {
@@ -29,21 +31,24 @@ namespace Synapse.ProcessOrders
         {
             {
                 string alertApiUrl = "https://alert-api.com/alerts";
-                var alertData = new
+                AlertData alertData = new()
                 {
                     Message = $"Alert for delivered item: Order {orderId}, Item: {item.Description}, " +
                               $"Delivery Notifications: {item.DeliveryNotification}"
                 };
-                var content = new StringContent(JObject.FromObject(alertData).ToString(), System.Text.Encoding.UTF8, "application/json");
-                var response = _apiClient.PostAsync(alertApiUrl, content).Result;
+                
+                StringContent content = new StringContent(JObject.FromObject(alertData).ToString(), System.Text.Encoding.UTF8, "application/json");
+                HttpResponseMessage response = _apiClient.PostAsync(alertApiUrl, content).Result;
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine($"Alert sent for delivered item: {item.Description}");
+                    _logger.LogInformation("Alert sent for delivered item: {item.Description}", item.Description);
                 }
                 else
                 {
-                    Console.WriteLine($"Failed to send alert for delivered item: {item.Description}");
+                    _logger.LogError("Failed to send alert for delivered item: {item.Description}", item.Description);
+                    //TODO: Need to talk with PO about how to handle error in this situation
+                    //Do we want to move forward and Increment Delivery Notification if this alert fails to send?
                 }
             }
         }

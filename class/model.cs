@@ -1,12 +1,6 @@
-public interface IApiClient
-{
-    Task<HttpResponseMessage> GetAsync(string url);
-    Task<HttpResponseMessage> PostAsync(string url, HttpContent content);
-}
-
 public class OrderDTO
 {
-    public  required Order[] Orders {get; set;}
+    public required Order[] Orders {get; set;}
 }
 
 public class Order
@@ -21,5 +15,10 @@ public class Item
     public int DeliveryNotification {get; set;}
     public required string Description {get; set;}
 
+}
+
+public class AlertData
+{
+    public required string Message {get; set;}
 }
 
