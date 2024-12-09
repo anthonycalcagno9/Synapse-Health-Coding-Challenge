@@ -27,7 +27,7 @@ namespace Synapse.ProcessOrders
             return item.Status.Equals("Delivered", StringComparison.OrdinalIgnoreCase);
         }
 
-        private void SendAlertMessage(Item item, string orderId)
+        private async void SendAlertMessage(Item item, string orderId)
         {
             {
                 string alertApiUrl = "https://alert-api.com/alerts";
@@ -38,7 +38,7 @@ namespace Synapse.ProcessOrders
                 };
                 
                 StringContent content = new StringContent(JObject.FromObject(alertData).ToString(), System.Text.Encoding.UTF8, "application/json");
-                HttpResponseMessage response = _apiClient.PostAsync(alertApiUrl, content).Result;
+                HttpResponseMessage response = await _apiClient.PostAsync(alertApiUrl, content);
 
                 if (response.IsSuccessStatusCode)
                 {
