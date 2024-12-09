@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Synapse.FetchOrders
 {
-    class FetchOrderService(HttpClient apiClient, ILogger logger)
+    public class FetchOrderService(HttpClient apiClient, ILogger logger)
     {
         public HttpClient _apiClient = apiClient;
 

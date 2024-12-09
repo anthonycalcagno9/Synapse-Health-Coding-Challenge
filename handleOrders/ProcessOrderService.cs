@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Synapse.ProcessOrders
 {
-    class ProcessOrderService(HttpClient apiClient, ILogger logger)
+    public class ProcessOrderService(HttpClient apiClient, ILogger logger)
     {
         private readonly HttpClient _apiClient = apiClient;
         private readonly ILogger _logger = logger;

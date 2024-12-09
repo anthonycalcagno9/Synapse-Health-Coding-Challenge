@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/handleOrders/handleOrders.csproj": {}
+    "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/HandleOrders/HandleOrders.csproj": {}
   },
   "projects": {
-    "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/handleOrders/handleOrders.csproj": {
+    "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/HandleOrders/HandleOrders.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/handleOrders/handleOrders.csproj",
-        "projectName": "handleOrders",
-        "projectPath": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/handleOrders/handleOrders.csproj",
+        "projectUniqueName": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/HandleOrders/HandleOrders.csproj",
+        "projectName": "HandleOrders",
+        "projectPath": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/HandleOrders/HandleOrders.csproj",
         "packagesPath": "/Users/anthonycalcagno/.nuget/packages/",
-        "outputPath": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/handleOrders/obj/",
+        "outputPath": "/Users/anthonycalcagno/Developer/dotnet/SynapseHealth/Synapse-Health-Coding-Challenge/HandleOrders/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/anthonycalcagno/.nuget/NuGet/NuGet.Config"

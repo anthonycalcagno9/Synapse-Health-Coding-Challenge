@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "handleOrders", "handleOrders\handleOrders.csproj", "{ECE6DF7F-7A6E-4C15-88F8-95DE0F2DA18F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandleOrders", "HandleOrders\HandleOrders.csproj", "{ECE6DF7F-7A6E-4C15-88F8-95DE0F2DA18F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "unitTests", "unitTests\unitTests.csproj", "{CF0BA325-5F33-492D-9B88-C5E45B1C9393}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandleOrders.Tests", "HandleOrders.Tests\HandleOrders.Tests.csproj", "{F4955EBA-CA76-4AE8-B9AE-606CC75CD076}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +24,9 @@ Global
 		{CF0BA325-5F33-492D-9B88-C5E45B1C9393}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF0BA325-5F33-492D-9B88-C5E45B1C9393}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF0BA325-5F33-492D-9B88-C5E45B1C9393}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4955EBA-CA76-4AE8-B9AE-606CC75CD076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4955EBA-CA76-4AE8-B9AE-606CC75CD076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4955EBA-CA76-4AE8-B9AE-606CC75CD076}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4955EBA-CA76-4AE8-B9AE-606CC75CD076}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
