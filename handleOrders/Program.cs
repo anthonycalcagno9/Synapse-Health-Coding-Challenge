@@ -45,7 +45,6 @@ namespace Synapse.HandleOrders
                 apiClient = new(mockHttpMessageHandler.Object);
             }
 
-
             FetchOrderService orderService = new(apiClient, factory.CreateLogger<FetchOrderService>());
             ProcessOrderService processOrderService = new(apiClient, factory.CreateLogger<ProcessOrderService>());
             UpdateOrderService updateOrderService = new(apiClient, factory.CreateLogger<UpdateOrderService>());

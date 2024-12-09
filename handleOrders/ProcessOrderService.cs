@@ -7,6 +7,7 @@ namespace Synapse.ProcessOrders
     {
         private readonly HttpClient _apiClient = apiClient;
         private readonly ILogger _logger = logger;
+        private const string AlertApiUrl = "https://alert-api.com/alerts";
 
          public Order ProcessOrder(Order order)
         {
@@ -30,7 +31,6 @@ namespace Synapse.ProcessOrders
         private async void SendAlertMessage(Item item, string orderId)
         {
             {
-                string alertApiUrl = "https://alert-api.com/alerts";
                 AlertData alertData = new()
                 {
                     Message = $"Alert for delivered item: Order {orderId}, Item: {item.Description}, " +
@@ -38,7 +38,7 @@ namespace Synapse.ProcessOrders
                 };
                 
                 StringContent content = new StringContent(JObject.FromObject(alertData).ToString(), System.Text.Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await _apiClient.PostAsync(alertApiUrl, content);
+                HttpResponseMessage response = await _apiClient.PostAsync(AlertApiUrl, content);
 
                 if (response.IsSuccessStatusCode)
                 {
