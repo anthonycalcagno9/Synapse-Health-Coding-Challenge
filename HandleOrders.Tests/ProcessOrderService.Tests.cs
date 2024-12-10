@@ -14,7 +14,7 @@ namespace Synapse.HandleOrders.Tests
     public class ProcessOrderServiceTests
     {
         [Fact]
-        public void ProcessOrder_ItemShouldBeDelivered_ConfirmSendAlertMessageApiWasCalled()
+        public void ProcessOrder_ItemShouldBeDelivered_ConfirmSendAlertApiWasCalled()
         {
             //Arrange
             Mock<HttpMessageHandler> mockHttpMessageHandler = new();
