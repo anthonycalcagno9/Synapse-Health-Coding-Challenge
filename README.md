@@ -17,7 +17,7 @@
 2. Execute the following command to run all unit tests
 
     ```bash
-    dotnet run dev
+    dotnet test
     ```
 
 ## TODOs that could improve the project
